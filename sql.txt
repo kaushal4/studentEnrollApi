@@ -1,0 +1,46 @@
+create table subjects(
+	subjectName varchar(255) not null primary key,
+    availability int not null,
+    startTime int not null,
+    endTime int not null
+);
+
+
+
+
+create table student(
+	studentName varchar(255) primary key
+);
+
+create table enrolled(
+	studentName varchar(255) not null,
+    subjectName varchar(255) not null,
+    foreign key(studentName) references student(studentName),
+    foreign key(subjectName) references subjects(subjectName),
+    primary key(studentName,subjectName)
+);
+
+create table waitList(
+	studentName varchar(255) not null,
+    subjectName varchar(255) not null,
+    foreign key(studentName) references student(studentName),
+    foreign key(subjectName) references subjects(subjectName),
+    primary key(studentName,subjectName)
+);
+
+INSERT STATEMENTS:
+-------------------------------------------------------------
+
+insert into student(studentName) values("Kaushal");
+
+select * from student;
+
+insert into subjects(subjectName,availability,startTime,endTime)
+values(
+	"DSA",
+    10,
+    21600,
+    25200
+);
+
+select * from subjects;
